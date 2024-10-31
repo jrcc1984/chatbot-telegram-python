@@ -1,10 +1,7 @@
 from selenium import webdriver
-#from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import telebot
-#from commands.media import register_media_commands
-#from commands.capturar_pantalla import register_capture_commands
 from captura_UIM import register_uim_commands
 from captura_grafana import register_grafana_commands
 from captura_APM import register_apm_commands

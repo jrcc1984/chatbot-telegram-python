@@ -29,16 +29,12 @@ def register_apm_commands(bot):
             driver.maximize_window()
             driver.get(url)
             time.sleep(2)
-            pyautogui.press('tab')
-            time.sleep(1)
-            pyautogui.press('tab')
-            time.sleep(1)
-            pyautogui.press('tab')
-            time.sleep(1)
-            pyautogui.press('tab')
-            time.sleep(1)
-            pyautogui.press('tab')
-            time.sleep(1)
+            def press_tab_multiple_times(n):
+                for _ in range(n):
+                    pyautogui.press('tab')
+                    time.sleep(0.1)  # Pausa entre pulsaciones, ajustable según necesidad
+            # Llama a la función para presionar Tab 10 veces
+            press_tab_multiple_times(5)
             with open('D:\\repositorio\\chatbot-telegram-python\\password_apm.cfg', 'r') as secreto:
                 usuario = secreto.readline().strip()
                 passwd = secreto.readline().strip()
@@ -49,7 +45,7 @@ def register_apm_commands(bot):
             pyautogui.write(passwd)
             time.sleep(1)
             pyautogui.press('enter')
-            time.sleep(25)
+            time.sleep(20)
             screenshot = driver.save_screenshot('C:/Users/Jose/Downloads/screenshots/captura_APM.png')
             driver.quit()
             bot.reply_to(message, "Captura de pantalla APM guardada...")
