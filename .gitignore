@@ -1,3 +1,4 @@
 password_apm.cfg
 password_uim.cfg
-*.md
+README.md
+__pycache__
