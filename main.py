@@ -6,7 +6,8 @@ from captura_UIM import register_uim_commands
 from captura_grafana import register_grafana_commands
 from captura_APM import register_apm_commands
 
-TOKEN = '7334401995:AAHHhaXJYn6hpZzP7OJrpOTdDyxULc7Epug'
+with open('D:\\repositorio\\chatbot-telegram-python\\token_telegram.cfg', 'r') as secreto:
+                TOKEN = secreto.readline().strip()
 
 bot = telebot.TeleBot(TOKEN)
 

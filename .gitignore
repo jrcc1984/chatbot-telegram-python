@@ -2,3 +2,4 @@ password_apm.cfg
 password_uim.cfg
 README.md
 __pycache__
+token_telegram.cfg
