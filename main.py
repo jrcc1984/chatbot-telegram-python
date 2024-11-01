@@ -12,8 +12,6 @@ with open('D:\\repositorio\\chatbot-telegram-python\\token_telegram.cfg', 'r') a
 bot = telebot.TeleBot(TOKEN)
 
 #se hace la llamada a los comandos desde captura_grafan y captura_UIM.
-#register_media_commands(bot)
-#register_capture_commands(bot)
 register_grafana_commands(bot)
 register_uim_commands(bot)
 register_apm_commands(bot)

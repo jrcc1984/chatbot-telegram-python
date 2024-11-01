@@ -23,8 +23,8 @@ def register_uim_commands(bot):
             options.add_argument("user-data-dir=C:\\Users\\Jose\\Application Data")
             driver = webdriver.Chrome(options=options)
 
-            driver.maximize_window()
-            driver.get(url)
+            driver.maximize_window() #Maximo la pagina web
+            driver.get(url) #obtengo la URL y abro la pagina web
             time.sleep(2)
             with open('D:\\repositorio\\chatbot-telegram-python\\password_uim.cfg', 'r') as secreto:
                 usuario = secreto.readline().strip()

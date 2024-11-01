@@ -1,6 +1,7 @@
 from selenium import webdriver
 #from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.common.exceptions import NoSuchElementException
 import time
 import telebot
 import subprocess
@@ -12,12 +13,9 @@ url1 = ["https://telefonicachile.grafana.net/d/zRgowkESk2/opsti-procesos-reposic
         "https://telefonicachile.grafana.net/d/647kYyjVz/opsti-amdocs-lockservers-register?orgId=1&refresh=5m",
         "https://telefonicachile.grafana.net/d/QqwAev0Vz/opsti-procesos-trb?refresh=1m&orgId=1"]
 
-
 def register_grafana_commands(bot):
     @bot.message_handler(commands=['grafana'])
     def ejecucion(message):
-        # script_name = 'C:\Users\Jose\Desktop\Monitoring_Bot\capture.py'
-        # result = subprocess.run(['python3', script_name])
         try:
             i=0
             for c in url1:
@@ -31,15 +29,26 @@ def register_grafana_commands(bot):
                 options.add_experimental_option("excludeSwitches", ["enable-automation"])
                 options.add_argument("user-data-dir=C:\\Users\\Jose\\Application Data")
                 driver = webdriver.Chrome(options=options)
-
+                
                 driver.maximize_window()
                 driver.get(c)
                 time.sleep(5)
+                xpath_expression = '//*[@id="pageContent"]/div[3]/div/div/div/div[1]/div/h1'
+                                            
+                try:
+                    driver.find_element("xpath" , xpath_expression)
+                    driver.find_element("xpath" , '//*[@id="pageContent"]/div[3]/div/div/div/div[2]/div/div/a').click()
+                    time.sleep(2)
+                except NoSuchElementException:
+                    print("El elemento no existe, entonces no hay que dar click a iniciar.")
+                
+                time.sleep(2)    
                 screenshot = driver.save_screenshot(f'C:/Users/Jose/Downloads/screenshots/captura_{i}.png')
                 i+=1
                 time.sleep(2)
                 driver.close()
             driver.quit()
+            
             bot.reply_to(message, "Captura de pantalla Grafana guardadas...")
             
             imagenes = [0,1,2,3,4,5]
